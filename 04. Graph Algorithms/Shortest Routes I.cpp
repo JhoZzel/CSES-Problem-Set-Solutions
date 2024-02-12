@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
-#define dbg(x) do {cerr << #x <<" = " << (x) << endl; } while (false)
 using namespace std;
 typedef long long ll;
 
@@ -12,17 +11,7 @@ int m;
 ll D[N];
 vector<pair<int,int>> G[N];
 
-int main() {
-    fast_io;
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int u,v,w;
-        cin >> u >> v >> w;
-        u--; v--;
-        G[u].emplace_back(v,w);
-        
-    }
-    
+void solve() {
     priority_queue<pair<ll,int>, vector<pair<ll,int>>, greater<pair<ll,int>>> Q;
     
     fill(D, D + n, INF);
@@ -45,6 +34,18 @@ int main() {
     for (int i = 0; i < n; i++) {
         cout << D[i] << " ";
     }
-    
+}
+
+int main() {
+    fast_io;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int u,v,w;
+        cin >> u >> v >> w;
+        u--; v--;
+        G[u].emplace_back(v,w);
+        
+    }
+    solve();
     return 0;
 }
