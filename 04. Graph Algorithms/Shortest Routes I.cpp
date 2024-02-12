@@ -11,13 +11,11 @@ int m;
 ll D[N];
 vector<pair<int,int>> G[N];
 
-void solve() {
+void dijkstra(int s0) {
     priority_queue<pair<ll,int>, vector<pair<ll,int>>, greater<pair<ll,int>>> Q;
-    
     fill(D, D + n, INF);
-    D[0] = 0;
-    Q.emplace(0,0);
-    
+    D[s0] = 0;
+    Q.emplace(0,s0);
     while(!Q.empty()) {
         int u;
         ll d;
@@ -29,10 +27,6 @@ void solve() {
                 Q.emplace(D[v], v);
             }
         }
-    }
-    
-    for (int i = 0; i < n; i++) {
-        cout << D[i] << " ";
     }
 }
 
@@ -46,6 +40,9 @@ int main() {
         G[u].emplace_back(v,w);
         
     }
-    solve();
+    dijkstra(0);
+    for (int i = 0; i < n; i++) {
+        cout << D[i] << " ";
+    }
     return 0;
 }
