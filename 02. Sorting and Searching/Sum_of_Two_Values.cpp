@@ -10,9 +10,11 @@ int main() {
         cin >> a[i];
         M[a[i]].push_back(i);
     }
+    
     for (int i = 0; i < n; i++) {
-        if (x - a[i] <= 0) continue;
-        for (int j : M[x - a[i]]) {
+        int target = x - a[i];
+        if (target <= 0) continue;
+        for (int j : M[target]) {
             if (j == i) continue;
             cout << i + 1 << " " << j + 1 << "\n";
             return 0;
