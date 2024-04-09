@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e6 + 5;
+const int MAX = 1e6 + 5;
 
-int SD[N];
+int SD[MAX];
 
 void sieve() { 
-    for (int i = 1; i < N; i++) {
-        for (int j = i; j < N; j += i) {
+    for (int i = 1; i < MAX; i++) {
+        for (int j = i; j < MAX; j += i) {
             SD[j]++;
         }
     }
