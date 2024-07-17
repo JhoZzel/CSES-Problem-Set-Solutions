@@ -1,9 +1,10 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
  
 const int N = 2e5 + 5;
-
+ 
 ll pre[N];
  
 int main() {
@@ -13,13 +14,12 @@ int main() {
         cin >> pre[i];
         pre[i] += pre[i - 1];
     }
-    ll ans = 0;
-    for (int i = 0; i <= n; i++) {
-        ll target = pre[i] + S;
-        int L = lower_bound(pre, pre + n + 1, target) - pre;
-        if (L == n + 1) continue;
-        int R = upper_bound(pre, pre + n + 1, target) - pre - 1;
-        ans += R - L + 1;
+    int ans = 0;
+    int i = 0, j = 0;
+    while(i <= n) {
+        while(j <= n && pre[j] - pre[i] < S) j++;
+        while(j <= n && pre[j] - pre[i] == S) j++, ans++;  
+        i++;
     }
     cout << ans << '\n';
     return 0;
