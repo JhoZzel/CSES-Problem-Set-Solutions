@@ -21,7 +21,6 @@ int main() {
     cin >> n >> q;
     vector<int> a(n);
     for (int &e : a) cin >> e;
-
     vector<array<int, 3>> Q(q);
     for (int i = 0; i < q; i++) {
         int l,r;
@@ -30,7 +29,6 @@ int main() {
         Q[i] = {l,r,i};
     }
     sort(Q.rbegin(), Q.rend());
-    
     map<int,int> last;
     vector<int> ans(q);
     int j = 0;
@@ -44,9 +42,6 @@ int main() {
             j++;
         }
     }
-    
-    for (int i = 0; i < q; i++) {
-        cout << ans[i] << ' ';
-    }
+    for (int i = 0; i < q; i++) cout << ans[i] << ' ';
     return 0;
 }
