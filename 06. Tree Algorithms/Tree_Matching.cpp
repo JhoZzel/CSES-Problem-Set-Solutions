@@ -1,40 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
+typedef long long ll;
+
 const int N = 2e5 + 5;
- 
+
 int n;
 int dp[N][2];
 vector<int> G[N];
- 
-int DFS(int u, int p, bool on) {
-    if (~dp[u][on]) return dp[u][on];
+
+void dfs(int u, int p = -1) {
     int all = 0;
     for (int v : G[u]) {
         if (v == p) continue;
-        all += DFS(v, u, 0);
-    } 
-    
-    if (on) return dp[u][on] = all;
-    
-    dp[u][on] = all;
+        dfs(v,u);
+        all += dp[v][0];
+    }
+    dp[u][0] = dp[u][1] = all;
     for (int v : G[u]) {
         if (v == p) continue;
-        dp[u][on] = max(dp[u][on], all - DFS(v, u, 0) + 1 + DFS(v, u, 1));
+        dp[u][0] = max(dp[u][0], all - dp[v][0] + dp[v][1] + 1);
     }
-    return dp[u][on];
 }
- 
+
 int main() {
-    memset(dp, -1, sizeof(dp));
     cin >> n;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 1; i < n; i++) {
         int u,v;
         cin >> u >> v;
         u--; v--;
         G[u].push_back(v);
         G[v].push_back(u);
     }
-    cout << DFS(0, -1, false) << "\n";
+    dfs(0);
+    cout << dp[0][0] << '\n';
     return 0;
 }
