@@ -31,8 +31,6 @@ int main() {
         }
         cout << u << "\n";
     }
-
-
-
+    
     return 0;
 }
