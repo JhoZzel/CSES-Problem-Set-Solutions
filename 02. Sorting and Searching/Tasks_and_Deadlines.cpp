@@ -1,18 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+using ll = long long;
+
 int main() {
+    cin.tie(0) -> sync_with_stdio(0);
     int n; cin >> n;
-    vector<pair<int,int>> a(n);
-    for (auto &[x, y] : a) cin >> x >> y;
-    sort(a.begin(), a.end());
-
-    long long ans = 0, t = 0;
-    for (auto [x, y] : a) {
-        t += x;
-        ans += y - t;
+    ll sa = 0;
+    vector<int> a;
+    for (int i = 0; i < n; i++) {
+        int x,y;
+        cin >> x >> y;
+        sa += y;
+        a.push_back(x);
     }
-    cout << ans << '\n';
-
+    sort(a.rbegin(), a.rend());
+    for (int i = 0; i < n; i++) {
+        sa -= 1ll * (i + 1) * a[i];
+    }
+    cout << sa << "\n";
     return 0;
 }
