@@ -50,7 +50,9 @@ int main() {
     t.erase(unique(all(t)), t.end());
     m = t.size();
  
-    for (int i = 0; i < n; i++) a[i] = lower_bound(all(t), a[i]) - t.begin();
+    for (int i = 0; i < n; i++) {
+        a[i] = lower_bound(all(t), a[i]) - t.begin();
+    }
 
     for (int i = 0; i < k - 1; i++) update(a[i], 1);
     for (int i = k - 1; i < n; i++) {
